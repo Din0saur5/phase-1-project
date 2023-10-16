@@ -19,24 +19,25 @@
         <h3 id="authors"></h3>
         <p id="subject"></p>
         <p id="page-count"></p>
+        <p id="desc"></p>
         <p id="url"></p>
         
     </div>
 
     <!-- Form with Select Dropdowns -->
     <form>
-        <label for="readSpeed">Reading Speed</label>
-        <select id="dropdown1" name="option1">
+        <label for="readSpeed">Reading Speed?</label>
+        <select id="read-speed" name="speed">
             <option value="slow">slower</option>
             <option value="avg">average</option>
             <option value="fast">faster</option>
         </select>
         
-        <label for="dropdown2">S2:</label>
-        <select id="dropdown2" name="option2">
-            <option value="">O 1</option>
-            <option value="">o 2</option>
-            <option value="">O3</option>
+        <label for="literacy confidence">How Confident Are You To Read This Book?</label>
+        <select id="lit-con" name="litCon">
+            <option value="">not confident</option>
+            <option value="">neutral</option>
+            <option value="">very confident</option>
         </select>
         
         <input type="submit" value="Submit">
