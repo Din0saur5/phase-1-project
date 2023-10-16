@@ -1,0 +1,15 @@
+{
+  "favorite-books": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode",
+      "cover": "img",
+      "decription": "description",
+      "read-time": "hours"
+      
+      
+    }
+  ]
+}
+ 

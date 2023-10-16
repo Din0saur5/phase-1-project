@@ -8,29 +8,38 @@
 
     <!-- Search Bar and Buttons -->
     <form id="search-form">
+            <div class="tooltip">
+                <span>ℹ️</span>
+                <div class="tooltiptext">ISBN is accurate (10 or 13); title search tends to be incorrect, or the wrong language.</div>
+            </div>
+        <select id="search-type" name="type">
+            <option value="ISBN">isbn</option>
+            <option value="title">title</option>
         <input type="text" name="searchInput" placeholder="Enter your search term">
         <button id="searchButton">Search</button>
     </form>
      <button id="generateRandomButton">Generate Random</button>
    
     <div>
+        <br>
         <img id="cover">
         <h2 id="title"></h2>
         <h3 id="authors"></h3>
         <p id="subject"></p>
         <p id="page-count"></p>
         <p id="desc"></p>
-        <p id="url"></p>
-        
+        <p id="more-info"></p>
+        <a id="url"></a>
+        <br><br>
     </div>
 
-    <!-- Form with Select Dropdowns -->
-    <form>
+    <!-- Form for calculations-->
+    <form id="calculator">
         <label for="readSpeed">Reading Speed?</label>
         <select id="read-speed" name="speed">
-            <option value="slow">slower</option>
-            <option value="avg">average</option>
-            <option value="fast">faster</option>
+            <option value="">slower</option>
+            <option value="">average</option>
+            <option value="">faster</option>
         </select>
         
         <label for="literacy confidence">How Confident Are You To Read This Book?</label>
@@ -43,7 +52,7 @@
         <input type="submit" value="Submit">
     </form>
     <div> 
-        <p>estimated time to read: <span></span></p>
+        <p>estimated time to read: <span></span></p> <!-- calculated reading time converted to hours and minutes goes here -->
 
     </div>
 
