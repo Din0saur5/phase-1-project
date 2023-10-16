@@ -42,12 +42,25 @@ function getBookInfo(isbn) {
 
    }
 
+function getBookWorks(worksID){
+    fetch(`https://openlibrary.org/books/${worksID}.json`)
+    .then(resp=>resp.json())
+    .then(data=>{
+        const isbn = data.isbn_13
+        const desc = data.description
+        getBookInfo(isbn)
+        document.getElementById("desc").textContent = desc
+
+    })
+}
+
+
   const search = document.getElementById("search-form")
     search.addEventListener("submit",(e)=>{
         e.preventDefault()
         const searchValue = search.searchInput.value
         console.log(searchValue);
-        getBookInfo(searchValue);
+        getBookWorks(searchValue);
     })  
   
  
