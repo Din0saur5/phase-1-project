@@ -1,6 +1,6 @@
 //DOMContentLoaded event
 addEventListener("DOMContentLoaded",()=>{
-
+  let countNum;
 //buggy title search fetch  
 function searchBook(search){
     const searchFormat = search.split(' ').join('+')
@@ -53,6 +53,7 @@ function getBookInfo(isbn) {
         const coverOD = document.getElementById('cover')
         const urlOD = document.getElementById('url')
         const moreInfo = document.getElementById('more-info')
+        const calc = document.getElementById("calculator")
         //cover img 
         if(coverImg)
         {coverOD.src = coverImg;
@@ -70,8 +71,11 @@ function getBookInfo(isbn) {
         //page count
          if(pageCount){
           document.getElementById('page-count').textContent = `Page Count: ${pageCount}`
+          calc.querySelector("input").disabled = false
+         // countNum = pageCount
+
          }else{
-            const calc = document.getElementById("calculator")
+            
             calc.querySelector("input").disabled = true
             document.getElementById('page-count').textContent = `Page Count: Not Available -- Calculator disabled`
          }
@@ -88,7 +92,7 @@ function getBookInfo(isbn) {
     })
 }
    
-
+//works id fetch to get description
 function getBookdesc(worksID){
     fetch(`https://openlibrary.org${worksID}.json`)
     .then(resp=>resp.json())
@@ -116,7 +120,7 @@ function getBookdesc(worksID){
      }
  })
 
-    // hover event info
+    // hover event info (tool tip)
         const tooltipIcon = document.querySelector(".tooltip");
         const toolText = document.querySelector(".tooltiptext");
 
@@ -124,14 +128,17 @@ function getBookdesc(worksID){
             toolText.style.visibility = "visible";
             toolText.style.opacity = 1;
         })
-
-        // Add a mouseout event listener to hide the tooltip
         tooltipIcon.addEventListener("mouseleave", () =>{
             toolText.style.visibility = "hidden";
             toolText.style.opacity = 0;
         })
     
-    
+// 
+
+// chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
+//we can put it all together after it works
+countNum = 200
+
 
 
   
