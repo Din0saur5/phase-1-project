@@ -1,5 +1,5 @@
 //DOMContentLoaded event
-addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded",()=>{
  
   //list of variables "On-Document"
    let countNum;
@@ -13,12 +13,14 @@ addEventListener("DOMContentLoaded",()=>{
    const subjectOD = document.getElementById('subject')
    const descOD = document.getElementById("desc")
    const timeDisp = document.getElementById("reading-value")
+   
+
  //buggy title search fetch  
  function searchBook(search){
      const searchFormat = search.split(' ').join('+')
      console.log(searchFormat)
     
-     fetch(`https://openlibrary.org/search.json?q=${searchFormat}&language:eng&fields=*,availability&limit=1`)
+     fetch(`https://openlibrary.org/search.json?title=${searchFormat}&language:eng&fields=*,availability&limit=1`)
      .then(resp=>resp.json())
      .then(data=>{
          console.log(data)
@@ -328,46 +330,8 @@ addEventListener("DOMContentLoaded",()=>{
 
 // chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
 //we can put it all together after it works
-countNum = 200
-
-const calculator = document.getElementById("calculator")
-calculator.addEventListener("calculator",()=>{
-  e.preventDefault()
-  const calculatorValue = countNum
-
-}
-
-const search = document.getElementById("search-form")
-search.addEventListener("submit",(e)=>{
-    e.preventDefault()
-    const searchValue = search.searchInput.value
-    console.log(searchValue)
-    const searchType = document.getElementById("search-type")
-    
-   if(searchType.value ==="ISBN"){
-    getBookInfo(searchValue)
-    .then(search.reset())
- }else{
-    searchBook(searchValue)
-    .then(search.reset())
- }
- 
-
-  
-  
- 
-  
 
 
-})
 
-  
-  
-  
-   //
- 
- 
- 
- 
  })
  
