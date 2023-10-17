@@ -5,7 +5,9 @@
     background-color: skyblue;
     
 }
-
+body{
+    cursor:crosshair;
+}
 
 .wait-cursor {
     cursor: wait !important;
