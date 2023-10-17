@@ -330,8 +330,38 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 // chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
 //we can put it all together after it works
+countNum = 200
+
+calc.addEventListener("calculator",()=>{
+  e.preventDefault()
+  calculateTime(countNum)
+})
+function calculateTime(pages){
+  const speed = parseInt(calc.speed.value)
+  const conf = parseInt(calc.litCon.value)
+
+  const totalMins = math.floor ((pages / speed) * conf)
+  const hours = math.floor (totalMins / 60)
+  const minutes = math.floor (totalMins % 60)
+  timeDisp.innerText = `hours: ${hours} minutes: ${minutes}`
+
+ 
+}
+  
+  
+ 
+  
 
 
 
+
+  
+  
+  
+   //
+ 
+ 
+ 
+ 
  })
  
