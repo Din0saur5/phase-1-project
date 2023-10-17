@@ -1,5 +1,27 @@
 {
-  "favorite-books": [],
+  "favorite-books": [
+    {
+      "title": "The Water Dancer",
+      "isbn": "9780399590597",
+      "author": "Ta-Nehisi Coates",
+      "cover": "https://covers.openlibrary.org/b/id/14408350-S.jpg",
+      "id": 1
+    },
+    {
+      "title": "Norse mythology",
+      "isbn": "9780393609097",
+      "author": "Neil Gaiman",
+      "cover": "https://covers.openlibrary.org/b/id/12824590-S.jpg",
+      "id": 2
+    },
+    {
+      "title": "The Road",
+      "isbn": "9780307387899",
+      "author": "Cormac McCarthy",
+      "cover": "https://covers.openlibrary.org/b/id/9557220-S.jpg",
+      "id": 3
+    }
+  ],
   "top-200": [
     {
       "id": 1,

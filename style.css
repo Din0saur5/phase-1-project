@@ -5,12 +5,11 @@
     background-color: skyblue;
     
 }
-body{
-   
-    background-size: cover;
-    background-position: center;
-    
-}
+
+
+.wait-cursor {
+    cursor: wait !important;
+  }
 
 .tooltip .tooltiptext {
     visibility: hidden;

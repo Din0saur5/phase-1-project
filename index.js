@@ -20,17 +20,19 @@ function searchBook(search){
     })
     .catch((error)=>{
       console.error('Fetch error:',error)
-      alert('An error occurred while searching for the book.')
+      console.log('An error occurred while searching for the book.')
     })
 }
 //isbn fetch on request
 function getBookInfo(isbn) {
+     document.body.classList.add('wait-cursor')
     // Construct the API URL to get book information and ratings
     const apiUrl = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`;
     // Make a GET request to the API
     fetch(apiUrl)
       .then(resp => resp.json())
       .then(data=> {
+        document.body.classList.remove('wait-cursor');
         // Check if the ISBN key exists in the response
         if(`ISBN:${isbn}` in data){
             const bookInfo = data[`ISBN:${isbn}`]
@@ -44,7 +46,7 @@ function getBookInfo(isbn) {
           const coverImg = bookInfo.cover
           const worksID = bookInfo.key
           
-          
+        
         console.log('Title:', title);
         console.log('Authors:', authors);
         console.log('Page Count:', pageCount);
@@ -105,13 +107,17 @@ function getBookInfo(isbn) {
 
             })
             .then(resp=>resp.json())
-            .then(data=>{console.log(data); renderFavs(newFav)})
+            .then(data=>{console.log(data); 
+              
+              renderFavs(newFav)
+            })
             
-          })
+          
           .catch((error) => {
-            console.error('Fetch error:', error);
-            alert('An error occurred while adding the book to favorites.');
-          });
+            console.log(error)
+            console.log('An error occurred while adding the book to favorites.');
+          })
+        })
 
           //reset book info
           document.getElementById('subject').textContent = ' '
@@ -122,9 +128,11 @@ function getBookInfo(isbn) {
     
     })
     .catch((error) => {
+      document.body.classList.remove('wait-cursor');
       console.error('Fetch error:', error);
-      alert('An error occurred while fetching book information.');
+      console.log('An error occurred while fetching book information.');
     });
+    
 }
    
 //works id fetch to get description
@@ -149,7 +157,7 @@ function getBookdesc(worksID){
     })
     .catch((error) => {
       console.error('Fetch error:', error);
-      alert('An error occurred while fetching book description.');
+      console.log('An error occurred while fetching book description.');
     });
 }
 
@@ -200,7 +208,7 @@ random.addEventListener("click", ()=>{
       })
       .catch((error) => {
         console.error('Fetch error:', error);
-        alert('An error occurred while fetching a random book.');
+        console.log('An error occurred while fetching a random book.');
       });
 
 })
@@ -214,7 +222,7 @@ function getFavs(){
   })
   .catch((error) => {
     console.error('Fetch error:', error);
-    alert('An error occurred while fetching your favorite books.');
+    console.log('An error occurred while fetching your favorite books.');
   });
 
 }
@@ -264,7 +272,7 @@ dltFav.addEventListener("click",()=>{
   })
   .catch((error) => {
     console.error('Delete error:', error);
-    alert('An error occurred while deleting the favorite book.')
+    console.log('An error occurred while deleting the favorite book.')
   })
 })
 }
