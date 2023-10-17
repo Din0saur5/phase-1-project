@@ -2,6 +2,14 @@
     position: relative;
     display: inline-block;
     cursor: help;
+    background-color: skyblue;
+    
+}
+body{
+   
+    background-size: cover;
+    background-position: center;
+    
 }
 
 .tooltip .tooltiptext {
@@ -33,13 +41,46 @@ div#favorites{
     margin-top: 50px;
    border: #333 solid 5px;
    height: 800px;
-   width:400px;
+   width:420px;
+   overflow: auto;
+   overflow-x: hidden;
     
 }
-.fav:hover {
+
+div.fav{
+    width:400px;
+    height:125px;
+    border: solid 5px #333;
+    cursor: pointer;
+    
+}
+div.fav:hover {
     opacity: 0.8;
 }
+img.fav{
+    margin: 20px;
+    position:absolute;
+    border: solid 0.5px grey;
+    transform: scale(1.7);
+    margin-block-start: 30px;
+}
+
 .book-info{
     word-wrap: break-word;
     width:50%;
 }
+p.fav{
+    margin-inline-start: 80px;
+    
+    font-size: 22;
+}
+button.fav{
+    position: inherit;
+    background-color: indianred;
+    margin-block-start: -28%;
+    margin-inline-start: 92%;
+    z-index: 1000;
+    cursor: not-allowed;
+}
+    
+

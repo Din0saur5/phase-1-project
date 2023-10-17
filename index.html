@@ -10,7 +10,7 @@
     <!-- Search Bar and Buttons -->
     <form id="search-form">
             <div class="tooltip">
-                <span>ℹ️</span>
+                <span>&nbsp;?&nbsp;</spa>
                 <div class="tooltiptext">ISBN is accurate (10 or 13); title search tends to be incorrect, or the wrong language.</div>
             </div>
         <select id="search-type" name="type">
@@ -35,16 +35,16 @@
     </div>
 
     <!-- Form for calculations-->
-    <form id="calculator">
+    <form id="calculator" >
         <label for="read-speed">Reading Speed?</label>
-        <select id="read-speed" name="speed">
+        <select class="calc" id="read-speed" name="speed">
             <option value="">slower</option>
             <option value="">average</option>
             <option value="">faster</option>
         </select>
         
         <label for="literacy confidence">How Confident Are You To Read This Book?</label>
-        <select id="lit-con" name="litCon">
+        <select class="calc" id="lit-con" name="litCon">
             <option value="">not confident</option>
             <option value="">neutral</option>
             <option value="">very confident</option>
@@ -58,9 +58,7 @@
     <div id="favorites">
         <!--favorites from json server go here-->
         <h1><u>Favorites:</u></h1>
-        <ul>
-
-        </ul>
+        
 
     </div>
 

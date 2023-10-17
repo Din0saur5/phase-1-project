@@ -18,6 +18,10 @@ function searchBook(search){
     console.log(isbnP)
     getBookInfo(isbnP)
     })
+    .catch((error)=>{
+      console.error('Fetch error:',error)
+      alert('An error occurred while searching for the book.')
+    })
 }
 //isbn fetch on request
 function getBookInfo(isbn) {
@@ -32,12 +36,12 @@ function getBookInfo(isbn) {
             const bookInfo = data[`ISBN:${isbn}`]
         
             console.log(bookInfo)
-          // Extract the desired information
+          //info
           const title = bookInfo.title;
           const authors = bookInfo.authors.map(author => author.name).join(', ');
           const pageCount = bookInfo.number_of_pages;
           const urlID = bookInfo.url;
-          const coverImg = bookInfo.cover.medium
+          const coverImg = bookInfo.cover
           const worksID = bookInfo.key
           
           
@@ -45,13 +49,13 @@ function getBookInfo(isbn) {
         console.log('Authors:', authors);
         console.log('Page Count:', pageCount);
         console.log('URL ID:', urlID);
-        console.log('Cover Image:', coverImg);
+        console.log('Cover Image:', coverImg.medium);
         
         console.log('Works ID:', worksID);
            
         //cover img 
         if(coverImg)
-        {coverOD.src = coverImg;
+        {coverOD.src = coverImg.medium;
         coverOD.alt = `Picture of ${title} cover`}
 
         //title and author  
@@ -74,30 +78,53 @@ function getBookInfo(isbn) {
             calc.querySelector("input").disabled = true
             document.getElementById('page-count').textContent = `Page Count: Not Available -- Calculator disabled`
          }
+
+
+  // add favorites btn
          const userData = document.getElementById("user-data")
          if(userData.querySelector("button"))
          {userData.querySelector("button").remove()}
+
           const favBtn = document.createElement("button")
-          favBtn.innerText ="❤️Add Favorite!"
+          favBtn.innerText ="Add Favorite!"
           userData.appendChild(favBtn)
           favBtn.addEventListener("click",()=>{
-            const newFav ={
+            let newFav ={
               "title": title,
               "isbn": isbn,
               "author": authors,
-              "cover": coverImg
+              "cover": coverImg.small
             }
-            //add post req
-            renderFavs()
+            fetch('http://localhost:3000/favorite-books',{
+              method:'POST',
+              headers:{
+                "Content-Type":"application/json",
+                "accepts":"application/json"
+              },
+              body: JSON.stringify(newFav)
+
+            })
+            .then(resp=>resp.json())
+            .then(data=>{console.log(data); renderFavs(newFav)})
+            
           })
+          .catch((error) => {
+            console.error('Fetch error:', error);
+            alert('An error occurred while adding the book to favorites.');
+          });
+
+          //reset book info
           document.getElementById('subject').textContent = ' '
           document.getElementById("desc").textContent =  ' '
          //worksID for description fn
          getBookdesc(worksID)
-
         }
     
-    })//add catch for failed search
+    })
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      alert('An error occurred while fetching book information.');
+    });
 }
    
 //works id fetch to get description
@@ -120,6 +147,10 @@ function getBookdesc(worksID){
          {document.getElementById('subject').textContent = `Subject: ${subject}`}
         
     })
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      alert('An error occurred while fetching book description.');
+    });
 }
 
 //submit event for search
@@ -160,13 +191,17 @@ const getRandomNumber = (min, max)=>
       return Math.floor(Math.random()*(max-min)+ min);
     }
 random.addEventListener("click", ()=>{
-    const randomId = getRandomNumber(1,111)   
+    const randomId = getRandomNumber(1,200)   
       fetch(`http://localhost:3000/top-200/${randomId}`)
       .then(resp=>resp.json())
       .then(data=>{
         console.log(data)
         getBookInfo(data.isbn)
       })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+        alert('An error occurred while fetching a random book.');
+      });
 
 })
 
@@ -175,17 +210,64 @@ function getFavs(){
   fetch(' http://localhost:3000/favorite-books')
   .then(resp=>resp.json())
   .then(data=>{
-    data.foreach(book=>renderFavs(book))
+    data.forEach(book=>renderFavs(book))
   })
+  .catch((error) => {
+    console.error('Fetch error:', error);
+    alert('An error occurred while fetching your favorite books.');
+  });
 
 }
 getFavs()
 //render favs
 const renderFavs = (bookObj)=>{
 console.log(bookObj)
+const favDiv = document.createElement("div")
+const favTitle = document.createElement("p")
+const favAuthor = document.createElement('p')
+const favImg = document.createElement('img')
+const dltFav = document.createElement('button')
+favDiv.setAttribute("class","fav")
+favTitle.setAttribute("class","fav")
+favTitle.textContent= bookObj.title
+favAuthor.setAttribute("class","fav")
+favAuthor.textContent= `By: ${bookObj.author}`
+favImg.setAttribute("class","fav")
+favImg.src = bookObj.cover
+document.getElementById("favorites").appendChild(favDiv)
+dltFav.textContent="x"
+dltFav.setAttribute("class","fav")
+favDiv.appendChild(favImg)
+favDiv.appendChild(favTitle)
+favDiv.appendChild(favAuthor)
+favDiv.appendChild(dltFav)
 
+//reference favorite
+favDiv.addEventListener("click",()=>{
+  getBookInfo(bookObj.isbn)
+})
+
+
+//delete from favs
+dltFav.addEventListener("click",()=>{
+  fetch(`http://localhost:3000/favorite-books/${bookObj.id}`,{
+    method:'DELETE'
+  })
+  .then((resp) => {
+    if (!resp.ok) {
+      throw new Error(`HTTP Error: ${resp.status}`)
+    }
+    return resp.json();
+  })
+  .then(() => {
+    favDiv.remove(); 
+  })
+  .catch((error) => {
+    console.error('Delete error:', error);
+    alert('An error occurred while deleting the favorite book.')
+  })
+})
 }
-    
  
 
 
