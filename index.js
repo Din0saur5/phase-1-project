@@ -324,16 +324,43 @@ addEventListener("DOMContentLoaded",()=>{
   
  
  
+
+
+// chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
+//we can put it all together after it works
+countNum = 200
+
+const calculator = document.getElementById("calculator")
+calculator.addEventListener("calculator",()=>{
+  e.preventDefault()
+  const calculatorValue = countNum
+
+}
+
+const search = document.getElementById("search-form")
+search.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    const searchValue = search.searchInput.value
+    console.log(searchValue)
+    const searchType = document.getElementById("search-type")
+    
+   if(searchType.value ==="ISBN"){
+    getBookInfo(searchValue)
+    .then(search.reset())
+ }else{
+    searchBook(searchValue)
+    .then(search.reset())
+ }
  
+
+  
+  
  
- // chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
- //we can put it all together after it works
- countNum = 200
- const speed = document.getElementById("read-speed").value
- const litLvl = document.getElementById("lit-con").value
- 
- 
- 
+  
+
+
+})
+
   
   
   

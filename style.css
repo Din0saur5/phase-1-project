@@ -83,5 +83,11 @@ button.fav{
     z-index: 1000;
     cursor: not-allowed;
 }
-    
 
+/* Added Styling */
+
+/*body {
+    background-image: url(https://static01.nyt.com/images/2015/10/24/opinion/24manguel/24manguel-superJumbo.jpg?quality=75&auto=webp);
+    opacity: 3;
+
+}
