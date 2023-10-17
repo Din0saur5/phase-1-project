@@ -12,6 +12,7 @@ addEventListener("DOMContentLoaded",()=>{
    const pageCountOD = document.getElementById('page-count')
    const subjectOD = document.getElementById('subject')
    const descOD = document.getElementById("desc")
+   const timeDisp = document.getElementById("reading-value")
  //buggy title search fetch  
  function searchBook(search){
      const searchFormat = search.split(' ').join('+')
@@ -158,7 +159,7 @@ addEventListener("DOMContentLoaded",()=>{
      moreInfo.textContent = ''
      urlOD.innerText = ''
      urlOD.href = ''
-     pageCountOD.textContent= ''
+     pageCountOD.textContent=''
  }  
  
  
@@ -330,7 +331,7 @@ addEventListener("DOMContentLoaded",()=>{
  countNum = 200
  const speed = document.getElementById("read-speed").value
  const litLvl = document.getElementById("lit-con").value
- const timeDisp = document.getElementById("reading-value")
+ 
  
  
   
