@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 //we can put it all together after it works
 countNum = 200
 
-calc.addEventListener("calculator",()=>{
+calc.addEventListener("calculator",(e)=>{
   e.preventDefault()
   calculateTime(countNum)
 })
@@ -358,7 +358,7 @@ function calculateTime(pages){
   
   
   
-   //
+
  
  
  
