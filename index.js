@@ -333,16 +333,16 @@ document.addEventListener("DOMContentLoaded",()=>{
 countNum = 200
 
 calc.addEventListener("calculator",()=>{
-  e.preventDefault()
+  e.preventDefault(e)
   calculateTime(countNum)
 })
 function calculateTime(pages){
   const speed = parseInt(calc.speed.value)
   const conf = parseInt(calc.litCon.value)
 
-  const totalMins = math.floor ((pages / speed) * conf)
-  const hours = math.floor (totalMins / 60)
-  const minutes = math.floor (totalMins % 60)
+  const totalMins = Math.floor ((pages / speed) * conf)
+  const hours = Math.floor (totalMins / 60)
+  const minutes = Math.floor (totalMins % 60)
   timeDisp.innerText = `hours: ${hours} minutes: ${minutes}`
 
  
