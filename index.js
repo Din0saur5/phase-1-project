@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  }
  //isbn fetch on request
  function getBookInfo(isbn) {
+      clearInfo()
       document.body.classList.add('wait-cursor')
     
      fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
@@ -82,8 +83,8 @@ document.addEventListener("DOMContentLoaded",()=>{
           if(pageCount){
            pageCountOD.textContent = `Page Count: ${pageCount}`
            calc.querySelector("input").disabled = false
-          // countNum = parseInt(pageCount)
- 
+          countNum = parseInt(pageCount)
+          
  
           }else{
             
@@ -330,21 +331,32 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 // chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
 //we can put it all together after it works
-countNum = 200
+
 
 calc.addEventListener("submit",(e)=>{
   e.preventDefault()
+  console.log(countNum)
   calculateTime(countNum)
+
+  
 })
 function calculateTime(pages){
-  const speed = parseInt(calc.speed.value)
-  const conf = parseInt(calc.litCon.value)
-
+  const speed = parseFloat(`${calc.speed.value}`)
+  
+  const conf = parseFloat(`${calc.litCon.value}`)
+ 
   const totalMins = Math.floor ((pages / speed) * conf)
   const hours = Math.floor (totalMins / 60)
   const minutes = Math.floor (totalMins % 60)
-  timeDisp.innerText = `hours: ${hours} minutes: ${minutes}`
+  if(hours || minutes){
+  
+    timeDisp.innerText = `${hours} hours and ${minutes} minutes `
 
+  }else{
+    alert("Please select your reading speed and literacy confidence level")
+  } 
+  
+ 
  
 }
   

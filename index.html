@@ -39,6 +39,7 @@
     <form id="calculator" >
         <label for="read-speed">Reading Speed?</label>
         <select class="calc" id="read-speed" name="speed">
+            <option style="color:grey">choose speed</option>
             <option value=".5">slower</option>
             <option value="1">average</option>
             <option value="1.5">faster</option>
@@ -46,15 +47,16 @@
         
         <label for="literacy confidence">How Confident Are You To Read This Book?</label>
         <select class="calc" id="lit-con" name="litCon">
-            <option value=".8">not confident</option>
+            <option style="color:grey">choose level</option>
+            <option value="1.2">not confident</option>
             <option value="1">neutral</option>
-            <option value="1.2">very confident</option>
+            <option value=".8">very confident</option>
         </select>
         
-        <input type="submit"  value="Submit"> <!--disabled="true" when done testing-->
+        <input type="submit" disabled="true" value="Submit"> <!--disabled="true" when done testing-->
     </form>
     <div id="user-data"> 
-        <p>Estimated time to read: <span id="reading-value"></span></p> <!-- calculated reading time converted to hours and minutes goes here -->
+        <p>Estimated time to read: <span style ="font-weight: bold" id="reading-value"></span></p> <!-- calculated reading time converted to hours and minutes goes here -->
     </div>
     <div id="favorites">
         <!--favorites from json server go here-->
