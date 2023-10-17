@@ -330,27 +330,36 @@ addEventListener("DOMContentLoaded",()=>{
 //we can put it all together after it works
 countNum = 200
 
-const calculator = document.getElementById("calculator")
-calculator.addEventListener("calculator",()=>{
+calc.addEventListener("calculator",()=>{
   e.preventDefault()
-  const calculatorValue = countNum
+  calculateTime(countNum)
+})
+function calculateTime(pages){
+  const speed = parseInt(calc.speed.value)
+  const conf = parseInt(calc.litCon.value)
+
+  const totalMins = math.floor ((pages / speed) * conf)
+  const hours = math.floor (totalMins / 60)
+  const minutes = math.floor (totalMins % 60)
+  timeDisp.innerText = `hours: ${hours} minutes: ${minutes}`
 
 }
 
-const search = document.getElementById("search-form")
-search.addEventListener("submit",(e)=>{
-    e.preventDefault()
-    const searchValue = search.searchInput.value
-    console.log(searchValue)
-    const searchType = document.getElementById("search-type")
+
+// const search = document.getElementById("search-form")
+// search.addEventListener("submit",(e)=>{
+//     e.preventDefault()
+//     const searchValue = search.searchInput.value
+//     console.log(searchValue)
+//     const searchType = document.getElementById("search-type")
     
-   if(searchType.value ==="ISBN"){
-    getBookInfo(searchValue)
-    .then(search.reset())
- }else{
-    searchBook(searchValue)
-    .then(search.reset())
- }
+//    if(searchType.value ==="ISBN"){
+//     getBookInfo(searchValue)
+//     .then(search.reset())
+//  }else{
+//     searchBook(searchValue)
+//     .then(search.reset())
+//  }
  
 
   
@@ -359,12 +368,12 @@ search.addEventListener("submit",(e)=>{
   
 
 
-})
+// })
 
   
   
   
-   //
+//    //
  
  
  
