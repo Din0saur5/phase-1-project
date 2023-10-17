@@ -24,3 +24,22 @@
     visibility: visible;
     opacity: 1;
 }
+div#favorites{
+    position: absolute;
+    top:0;
+    right:0;
+    padding: 20px;
+    margin-right: 50px;
+    margin-top: 50px;
+   border: #333 solid 5px;
+   height: 800px;
+   width:400px;
+    
+}
+.fav:hover {
+    opacity: 0.8;
+}
+.book-info{
+    word-wrap: break-word;
+    width:50%;
+}

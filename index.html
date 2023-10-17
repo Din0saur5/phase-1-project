@@ -5,13 +5,7 @@
   </head>
   <body>
     <h1>Search Page</h1>
-    <div id="favorites">
-        <!--favorites from json server go here-->
-
-    </div>
-
-
-
+   
 
     <!-- Search Bar and Buttons -->
     <form id="search-form">
@@ -27,7 +21,7 @@
     </form>
      <button id="generateRandomButton">Generate Random</button>
    
-    <div>
+    <div class="book-info">
         <br>
         <img id="cover">
         <h2 id="title"></h2>
@@ -42,7 +36,7 @@
 
     <!-- Form for calculations-->
     <form id="calculator">
-        <label for="readSpeed">Reading Speed?</label>
+        <label for="read-speed">Reading Speed?</label>
         <select id="read-speed" name="speed">
             <option value="">slower</option>
             <option value="">average</option>
@@ -58,11 +52,17 @@
         
         <input type="submit"  value="Submit"> <!--disabled="true" when done testing-->
     </form>
-    <div> 
-        <p>estimated time to read: <span></span></p> <!-- calculated reading time converted to hours and minutes goes here -->
+    <div id="user-data"> 
+        <p>estimated time to read: <span id="reading-value"></span></p> <!-- calculated reading time converted to hours and minutes goes here -->
+    </div>
+    <div id="favorites">
+        <!--favorites from json server go here-->
+        <h1><u>Favorites:</u></h1>
+        <ul>
+
+        </ul>
 
     </div>
-
 
     <script src="index.js"></script>
 </body>

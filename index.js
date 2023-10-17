@@ -1,6 +1,10 @@
 //DOMContentLoaded event
 addEventListener("DOMContentLoaded",()=>{
   let countNum;
+  const coverOD = document.getElementById('cover')
+  const urlOD = document.getElementById('url')
+  const moreInfo = document.getElementById('more-info')
+  const calc = document.getElementById("calculator")
 //buggy title search fetch  
 function searchBook(search){
     const searchFormat = search.split(' ').join('+')
@@ -34,26 +38,17 @@ function getBookInfo(isbn) {
           const pageCount = bookInfo.number_of_pages;
           const urlID = bookInfo.url;
           const coverImg = bookInfo.cover.medium
-          const subject = bookInfo.subjects[0].name
           const worksID = bookInfo.key
+          
           
         console.log('Title:', title);
         console.log('Authors:', authors);
         console.log('Page Count:', pageCount);
         console.log('URL ID:', urlID);
         console.log('Cover Image:', coverImg);
-        console.log('Subject:', subject);
-        console.log('Works ID:', worksID);
-            
         
-
-
-
-
-        const coverOD = document.getElementById('cover')
-        const urlOD = document.getElementById('url')
-        const moreInfo = document.getElementById('more-info')
-        const calc = document.getElementById("calculator")
+        console.log('Works ID:', worksID);
+           
         //cover img 
         if(coverImg)
         {coverOD.src = coverImg;
@@ -79,17 +74,30 @@ function getBookInfo(isbn) {
             calc.querySelector("input").disabled = true
             document.getElementById('page-count').textContent = `Page Count: Not Available -- Calculator disabled`
          }
-          
-         //subject
-         if(subject)
-         {document.getElementById('subject').textContent = `Subject: ${subject}`}
-          
+         const userData = document.getElementById("user-data")
+         if(userData.querySelector("button"))
+         {userData.querySelector("button").remove()}
+          const favBtn = document.createElement("button")
+          favBtn.innerText ="❤️Add Favorite!"
+          userData.appendChild(favBtn)
+          favBtn.addEventListener("click",()=>{
+            const newFav ={
+              "title": title,
+              "isbn": isbn,
+              "author": authors,
+              "cover": coverImg
+            }
+            //add post req
+            renderFavs()
+          })
+          document.getElementById('subject').textContent = ' '
+          document.getElementById("desc").textContent =  ' '
          //worksID for description fn
          getBookdesc(worksID)
 
-        }//add catch for failed search
+        }
     
-    })
+    })//add catch for failed search
 }
    
 //works id fetch to get description
@@ -98,26 +106,38 @@ function getBookdesc(worksID){
     .then(resp=>resp.json())
     .then(data=>{
         console.log(data)
-        const desc = data.description.value
+        let desc = data.description
+        if (typeof desc === 'object') {
+          desc = data.description.value
+        }
         if(desc){
         document.getElementById("desc").textContent = `Descritpion: ${desc}`
         }
+        let subject = data.subjects[1]
+       
+         //subject
+         if(subject)
+         {document.getElementById('subject').textContent = `Subject: ${subject}`}
+        
     })
 }
 
-//submit event
+//submit event for search
   const search = document.getElementById("search-form")
     search.addEventListener("submit",(e)=>{
         e.preventDefault()
         const searchValue = search.searchInput.value
-        console.log(searchValue);
+        console.log(searchValue)
         const searchType = document.getElementById("search-type")
         
        if(searchType.value ==="ISBN"){
-        getBookInfo(searchValue);
+        getBookInfo(searchValue)
+        .then(search.reset())
      }else{
         searchBook(searchValue)
+        .then(search.reset())
      }
+     
  })
 
     // hover event info (tool tip)
@@ -133,7 +153,41 @@ function getBookdesc(worksID){
             toolText.style.opacity = 0;
         })
     
-// 
+// randomish book generator click event
+const random = document.getElementById("generateRandomButton")
+const getRandomNumber = (min, max)=>
+    {
+      return Math.floor(Math.random()*(max-min)+ min);
+    }
+random.addEventListener("click", ()=>{
+    const randomId = getRandomNumber(1,111)   
+      fetch(`http://localhost:3000/top-200/${randomId}`)
+      .then(resp=>resp.json())
+      .then(data=>{
+        console.log(data)
+        getBookInfo(data.isbn)
+      })
+
+})
+
+//pull favs from json server
+function getFavs(){
+  fetch(' http://localhost:3000/favorite-books')
+  .then(resp=>resp.json())
+  .then(data=>{
+    data.foreach(book=>renderFavs(book))
+  })
+
+}
+getFavs()
+//render favs
+const renderFavs = (bookObj)=>{
+console.log(bookObj)
+
+}
+    
+ 
+
 
 // chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
 //we can put it all together after it works
