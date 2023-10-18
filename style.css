@@ -55,10 +55,10 @@ div.fav{
     cursor: pointer;
     
 }
-div.fav:hover {
+div#click:hover div.fav{
     opacity: 0.8;
 }
-img.fav{
+img.favDet{
     margin: 20px;
     position:absolute;
     border: solid 0.5px grey;
@@ -70,16 +70,23 @@ img.fav{
     word-wrap: break-word;
     width:50%;
 }
-p.fav{
+p.favDet{
     margin-inline-start: 80px;
-    
+    width:288;
     font-size: 22;
+}
+p.favDet + p{
+    width: -webkit-fill-available;
 }
 button.fav{
     position: inherit;
     background-color: indianred;
     margin-block-start: -28%;
     margin-inline-start: 92%;
-    z-index: 1000;
+    
     cursor: not-allowed;
+}
+
+h1{
+    text-decoration: underline;
 }

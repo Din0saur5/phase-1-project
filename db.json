@@ -1,13 +1,6 @@
 {
   "favorite-books": [
     {
-      "title": "The Water Dancer",
-      "isbn": "9780399590597",
-      "author": "Ta-Nehisi Coates",
-      "cover": "https://covers.openlibrary.org/b/id/14408350-S.jpg",
-      "id": 1
-    },
-    {
       "title": "Norse mythology",
       "isbn": "9780393609097",
       "author": "Neil Gaiman",
@@ -15,18 +8,32 @@
       "id": 2
     },
     {
-      "title": "The Road",
-      "isbn": "9780307387899",
-      "author": "Cormac McCarthy",
-      "cover": "https://covers.openlibrary.org/b/id/9557220-S.jpg",
-      "id": 3
-    },
-    {
       "title": "Debt of honor",
       "isbn": "0425147584",
       "author": "Tom Clancy",
       "cover": "https://covers.openlibrary.org/b/id/6483533-S.jpg",
       "id": 4
+    },
+    {
+      "title": "The Institute",
+      "isbn": "9781982110567",
+      "author": "Stephen King",
+      "cover": "https://covers.openlibrary.org/b/id/10712767-S.jpg",
+      "id": 5
+    },
+    {
+      "title": "Tuesdays with Morrie",
+      "isbn": "9780385496490",
+      "author": "Mitch Albom",
+      "cover": "https://covers.openlibrary.org/b/id/12553893-S.jpg",
+      "id": 6
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "isbn": "9780747589945",
+      "author": "J. K. Rowling",
+      "cover": "https://covers.openlibrary.org/b/id/11416484-S.jpg",
+      "id": 7
     }
   ],
   "top-200": [

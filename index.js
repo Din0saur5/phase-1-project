@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded",()=>{
    const subjectOD = document.getElementById('subject')
    const descOD = document.getElementById("desc")
    const timeDisp = document.getElementById("reading-value")
-   
+   const favorites = document.getElementById("favorites")
 
  //buggy title search fetch  
  function searchBook(search){
@@ -93,8 +93,7 @@ document.addEventListener("DOMContentLoaded",()=>{
           }
  
  
- 
- 
+
    // add favorites btn
           const userData = document.getElementById("user-data")
           if(userData.querySelector("button"))
@@ -104,13 +103,25 @@ document.addEventListener("DOMContentLoaded",()=>{
            const favBtn = document.createElement("button")
            favBtn.innerText ="Add Favorite!"
            userData.appendChild(favBtn)
+  
            favBtn.addEventListener("click",()=>{
-             let newFav ={
-               "title": title,
-               "isbn": isbn,
-               "author": authors,
-               "cover": coverImg.small
+  //favorites authors overflow catch
+           
+            const authLen = authors.split(",")
+            console.log(authLen)
+            let authorsM
+            if(authLen.length > 1){
+             authorsM = "Various Authors"
+             } else{
+                authorsM = authors
              }
+             let newFav ={
+              "title": title,
+              "isbn": isbn,
+              "author": authorsM,
+              "cover": coverImg.small
+            }
+            
              fetch('http://localhost:3000/favorite-books',{
                method:'POST',
                headers:{
@@ -123,8 +134,8 @@ document.addEventListener("DOMContentLoaded",()=>{
              })
              .then(resp=>resp.json())
              .then(data=>{console.log(data);
-               clearInfo()
-               renderFavs(newFav)
+               clearFavs()
+               getFavs()
              })
             
           
@@ -140,15 +151,23 @@ document.addEventListener("DOMContentLoaded",()=>{
           //worksID for description fn
           getBookdesc(worksID)
          }
-    
+          
      })
      .catch((error) => {
        document.body.classList.remove('wait-cursor');
        console.error('Fetch error:', error);
        console.log('An error occurred while fetching book information.');
-     });
+     })
+     .then(()=>search.reset())
     
  }
+
+ //clear favorites
+ function clearFavs(){
+  const favH = document.createElement("h1")
+  favH.textContent = "Favorites:"
+  favorites.replaceChildren(favH)
+}
  
  
  // clear info function
@@ -159,6 +178,7 @@ document.addEventListener("DOMContentLoaded",()=>{
      titleOD.textContent = ''
      authorsOD.textContent = ''
      coverOD.src = ''
+     coverOD.alt=''
      moreInfo.textContent = ''
      urlOD.innerText = ''
      urlOD.href = ''
@@ -211,10 +231,10 @@ document.addEventListener("DOMContentLoaded",()=>{
         
         if(searchType.value ==="ISBN"){
          getBookInfo(searchValue)
-         .then(search.reset())
+         
       }else{
          searchBook(searchValue)
-         .then(search.reset())
+         
       }
       
   })
@@ -271,58 +291,91 @@ document.addEventListener("DOMContentLoaded",()=>{
  
  
  }
+ clearFavs()
  getFavs()
+
  //render favs
  const renderFavs = (bookObj)=>{
- console.log(bookObj)
- const favDiv = document.createElement("div")
- const favTitle = document.createElement("p")
- const favAuthor = document.createElement('p')
- const favImg = document.createElement('img')
- const dltFav = document.createElement('button')
- favDiv.setAttribute("class","fav")
- favTitle.setAttribute("class","fav")
- favTitle.textContent= bookObj.title
- favAuthor.setAttribute("class","fav")
- favAuthor.textContent= `By: ${bookObj.author}`
- favImg.setAttribute("class","fav")
- favImg.src = bookObj.cover
- document.getElementById("favorites").appendChild(favDiv)
- dltFav.textContent="x"
- dltFav.setAttribute("class","fav")
- favDiv.appendChild(favImg)
- favDiv.appendChild(favTitle)
- favDiv.appendChild(favAuthor)
- favDiv.appendChild(dltFav)
- 
- 
- //reference favorite
- favDiv.addEventListener("click",()=>{
-   getBookInfo(bookObj.isbn)
- })
- 
- 
- 
- 
- //delete from favs
- dltFav.addEventListener("click",()=>{
-   fetch(`http://localhost:3000/favorite-books/${bookObj.id}`,{
-     method:'DELETE'
-   })
-   .then((resp) => {
-     if (!resp.ok) {
-       throw new Error(`HTTP Error: ${resp.status}`)
-     }
-     return resp.json();
-   })
-   .then(() => {
-     favDiv.remove();
-   })
-   .catch((error) => {
-     console.error('Delete error:', error);
-     console.log('An error occurred while deleting the favorite book.')
-   })
- })
+    console.log(bookObj)
+    //clear
+    
+    //create
+    const favWrap = document.createElement("div")
+    const favDiv = document.createElement("div")
+    const favTitle = document.createElement("p")
+    const favAuthor = document.createElement('p')
+    const favImg = document.createElement('img')
+    const dltFav = document.createElement('button')
+    //define
+    favWrap.setAttribute("class","favWrap")
+    favDiv.setAttribute("class","fav")
+    favTitle.setAttribute("class","favDet")
+    favTitle.textContent= bookObj.title
+    favAuthor.setAttribute("class","favDet")
+    favAuthor.textContent= `By: ${bookObj.author}`
+    favImg.setAttribute("class","favDet")
+    favImg.src = bookObj.cover
+    favorites.appendChild(favWrap)
+    favWrap.appendChild(favDiv)
+    dltFav.textContent="x"
+    dltFav.setAttribute("class","fav")
+    //append
+    favDiv.appendChild(favImg)
+    favDiv.appendChild(favTitle)
+    favDiv.appendChild(favAuthor)
+    favWrap.appendChild(dltFav)
+    
+
+    //reference favorite
+    favDiv.addEventListener("click",()=>{
+      getBookInfo(bookObj.isbn)
+    })
+    
+    
+    
+    
+    //delete from favs
+    dltFav.addEventListener("click",()=>{
+      //because the id's refactor after deletion
+      //have to update the booksobj before deletion 
+      //get server data, check data against the object isbn
+      //return id based on isbn and delete that way
+      //there is definitely an easier way and could potentially change server settings
+      //but I dont want to screw it up for future use.
+      let bookid
+        fetch('http://localhost:3000/favorite-books')
+        .then(resp=>resp.json())
+        .then(data=>{
+          console.log(data)
+          data.forEach((el)=>{
+            if(el.isbn === bookObj.isbn){
+              bookid = el.id
+              console.log(bookid)
+              
+            }
+          })
+        })
+        .then(()=>{
+          
+      fetch(`http://localhost:3000/favorite-books/${bookid}`,{
+        method:'DELETE'
+      })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(`HTTP Error: ${resp.status}`)
+        }
+        return resp.json();
+      })
+      .then(() => {
+        favWrap.remove();
+      })
+      .catch((error) => {
+        console.error('Delete error:', error);
+        console.log('An error occurred while deleting the favorite book.')
+      })
+    })
+    })
+      
  }
   
  
