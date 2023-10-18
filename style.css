@@ -81,8 +81,8 @@ p.favDet + p{
 button.fav{
     position: inherit;
     background-color: indianred;
-    margin-block-start: -28%;
-    margin-inline-start: 92%;
+    margin-block-start: -30%;
+    margin-inline-start: 90%;
     
     cursor: not-allowed;
 }
