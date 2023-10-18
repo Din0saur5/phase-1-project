@@ -105,8 +105,9 @@ document.addEventListener("DOMContentLoaded",()=>{
            userData.appendChild(favBtn)
   
            favBtn.addEventListener("click",()=>{
-  //favorites authors overflow catch
-           
+
+
+    //favorites authors overflow catch 
             const authLen = authors.split(",")
             console.log(authLen)
             let authorsM
@@ -166,7 +167,10 @@ document.addEventListener("DOMContentLoaded",()=>{
  function clearFavs(){
   const favH = document.createElement("h1")
   favH.textContent = "Favorites:"
-  favorites.replaceChildren(favH)
+  const bookStyle = document.createElement("img")
+  bookStyle.src = "./bookborderS.png"
+  bookStyle.style= "margin-block-start: -20px;"
+    favorites.replaceChildren(bookStyle, favH,)
 }
  
  
@@ -184,9 +188,6 @@ document.addEventListener("DOMContentLoaded",()=>{
      urlOD.href = ''
      pageCountOD.textContent=''
  }  
- 
- 
- 
  
  
  
@@ -379,7 +380,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  }
   
  
- 
+
 
 
 // chris there are some notes in the html also do your work under this note for now practice making the calculation using countNum ("200 pages")
@@ -415,14 +416,8 @@ function calculateTime(pages){
   
   
  
-  
 
 
-
-
-  
-  
-  
 
  
  
