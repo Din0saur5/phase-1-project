@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded",()=>{
          // Check ISBN key exists in the resp
          if(`ISBN:${isbn}` in data){
              const bookInfo = data[`ISBN:${isbn}`]
-        
              console.log(bookInfo)
+
            //info
            const title = bookInfo.title;
            const authors = bookInfo.authors.map(author => author.name).join(', ');
@@ -60,14 +60,13 @@ document.addEventListener("DOMContentLoaded",()=>{
          console.log('Authors:', authors);
          console.log('Page Count:', pageCount);
          console.log('URL ID:', urlID);
-         console.log('Cover Image:', coverImg.medium);
-        
+         
          console.log('Works ID:', worksID);
             
          //cover img
          if(coverImg)
-         {coverOD.src = coverImg.medium;
-         coverOD.alt = `Picture of ${title} cover`}
+          {coverOD.src = coverImg.medium;
+          coverOD.alt = `Picture of ${title} cover`}
  
  
          //title and author  
