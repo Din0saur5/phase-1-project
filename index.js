@@ -189,6 +189,8 @@ document.addEventListener("DOMContentLoaded",()=>{
      urlOD.innerText = ''
      urlOD.href = ''
      pageCountOD.textContent=''
+     calc.speed.selectedIndex = 0
+     calc.litCon.selectedIndex = 0
  }  
  
  
