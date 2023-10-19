@@ -81,13 +81,15 @@ document.addEventListener("DOMContentLoaded",()=>{
          //page count
           if(pageCount){
            pageCountOD.textContent = `Page Count: ${pageCount}`
-           calc.querySelector("input").disabled = false
+           calc.querySelector("button").disabled = false
+           calc.querySelector("button").style = "background-color: #e3faed;"
           countNum = parseInt(pageCount)
           
  
           }else{
             
-             calc.querySelector("input").disabled = true
+             calc.querySelector("button").disabled = true
+             calc.querySelector("button").style = "background-color: #D1C1A0;"
              document.getElementById('page-count').textContent = `Page Count: Not Available -- Calculator disabled`
           }
  
@@ -100,6 +102,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  
  
            const favBtn = document.createElement("button")
+           
            favBtn.innerText ="Add Favorite!"
            userData.appendChild(favBtn)
   

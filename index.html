@@ -5,19 +5,19 @@
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1903/1903162.png">
   </head>
   <body>
-    <img src="./bookborderL.png" id="head">
+    <div id="wrap">
     <h1>Search Book and Estimate Reading Time</h1>
    
 
     <!-- Search Bar  -->
-    <form id="search-form">
+    <form id="search-form" class="old-book">
             <div class="tooltip">
                 <span>&nbsp;?&nbsp;</spa>
                 <div class="tooltiptext">ISBN is accurate (10 or 13); title search is less so, and may be the wrong language.</div>
             </div>
         <select id="search-type" name="type">
-            <option value="ISBN">isbn</option>
-            <option value="title">title</option>
+            <option value="ISBN">ISBN &nbsp;</option>
+            <option value="title">Title &nbsp;</option>
         <input type="text" required="true" name="searchInput" placeholder="Enter your search term">
         <button id="searchButton">Search</button>
     </form>
@@ -40,24 +40,25 @@
     <form id="calculator" >
         <label for="read-speed">Reading Speed?</label>
         <select class="calc" id="read-speed" name="speed">
-            <option style="color:grey">choose speed</option>
-            <option value=".5">slower</option>
-            <option value="1">average</option>
-            <option value="1.5">faster</option>
+            <option style="color:grey">Choose Speed &nbsp;</option>
+            <option value=".5">Slower </option>
+            <option value="1">Average </option>
+            <option value="1.5">Faster </option>
         </select>
-        
+        <br>
         <label for="literacy confidence">How Confident Are You To Read This Book?</label>
         <select class="calc" id="lit-con" name="litCon">
-            <option style="color:grey">choose level</option>
-            <option value="1.2">not confident</option>
-            <option value="1">neutral</option>
-            <option value=".8">very confident</option>
+            <option style="color:grey">choose level </option>
+            <option value="1.2">not confident </option>
+            <option value="1">neutral </option>
+            <option value=".8">very confident </option>
         </select>
         
-        <input type="submit" disabled="true" value="Submit"> <!--disabled="true" when done testing-->
+        <button class="calc" disabled="true">Calculate</button> <!--disabled="true" when done testing-->
     </form>
     <div id="user-data"> 
         <p>Estimated time to read: <span style ="font-weight: bold" id="reading-value"></span></p> <!-- calculated reading time converted to hours and minutes goes here -->
+    </div>
     </div>
     <div id="favorites">
         <!--favorites from json server go here-->

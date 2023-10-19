@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Writing'; /* Choose a name for your font */
+    src: url('./EingraviertBeveled-dvdV.ttf') format('truetype');
+    
+
+   
+  }
+
+
 .tooltip {
     position: relative;
     display: inline-block;
@@ -7,8 +16,24 @@
 }
 body{
     cursor:crosshair;
+    background-image: url(./bookbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    height: 130%;
+    
+
+   
 }
 
+div#wrap{
+    position: absolute;
+    top: 30px;
+    left: 210px;
+    width: 40%;
+    background-attachment: scroll
+    
+}
 .wait-cursor {
     cursor: wait !important;
   }
@@ -16,7 +41,7 @@ body{
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 150px;
-    background-color: #333;
+    background-color: #5A3921;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -35,23 +60,28 @@ body{
 }
 div#favorites{
     position: absolute;
-    top:0;
-    right:0;
+    top:-50px;
+    left:1200px;
     padding: 20px;
     margin-right: 50px;
     margin-top: 50px;
-   border: #333 solid 5px;
-   height: 800px;
+   border: #5A3921 solid 5px;
+   height: 850px;
    width:420px;
    overflow: auto;
    overflow-x: hidden;
+   border-top: 100px solid rgba(80, 2, 80, 0);
+   box-shadow: 10px 8px 5px 5px #333;
+   background-color: rgba(80, 2, 80, 0.836);
+   color:#D1C1A0
     
 }
 
 div.fav{
     width:400px;
     height:125px;
-    border: solid 5px #333;
+    
+    background-color: rgba(80, 2, 80, 0.836);
     cursor: pointer;
     
 }
@@ -61,34 +91,49 @@ div.favWrap:hover .fav{
 #favorites img.favDet{
     margin: 20px;
     position:absolute;
-    border: solid 0.5px grey;
+    border: solid 0.5px #5A3921;
     transform: scale(1.7);
     margin-block-start: 30px;
+    margin-inline-start: 7%;
 }
 
 .book-info{
     word-wrap: break-word;
-    width:50%;
+    width:75%;
 }
 p.favDet{
-    margin-inline-start: 80px;
+    margin-inline-start: 110px;
     width:288;
     font-size: 22;
+    margin-block-start: 10px;
+    padding-block-start: 4px;
 }
 p.favDet + p{
     width: -webkit-fill-available;
+    padding-top: -4px;
 }
 button.fav{
     position: inherit;
     background-color: indianred;
-    margin-block-start: -30%;
-    margin-inline-start: 90%;
-    
+    margin-block-start: -27%;
+    margin-inline-start: 85%;
+    font-family: serif;
+    font-weight: bold;
     cursor: not-allowed;
+    font-size: 10pt;
+    color: black;
 }
 
 h1{
-    text-decoration: underline;
+    font-family:'Writing';
+    /*text-decoration: underline;*/
+    font-size: 30pt;
+    
+    color:#333
+}
+#favorites h1{
+    color: #D1C1A0;
+    font-weight: lighter;
 }
 
 #favorites img{
@@ -101,3 +146,83 @@ h1{
     top: -10;
     height: 76;
 } 
+#user-data{
+    padding-bottom: 50px;
+    
+}
+button  {
+    font-family: Writing;
+    background-color: #e3faed;
+    color: #5A3921; 
+    font-size: 12px; 
+    padding: 5px 10px; 
+    border: 1px solid #D1C1A0; 
+    border-radius: 30px; 
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+
+  }
+  
+  button:hover {
+    background-color: #D1C1A0; 
+    color: #5A3921; 
+    
+  }
+
+  select {
+    font-family:'fangsong';
+    
+    background-color: #e3faed;
+    color: #5A3921;
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid #e3faed;
+    border-radius: 5px;
+    
+  
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('./scroll.png');
+    background-size: 16px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  
+  
+
+  
+  select:focus {
+    outline: none;
+    box-shadow: 0 0 2px #5A3921;
+  }
+
+  #calculator{
+    width:400px; 
+  }
+  button.calc{
+    background-color: #D1C1A0;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(80, 2, 80, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: purple;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rebeccapurple;
+  cursor: n-resize;
+}
