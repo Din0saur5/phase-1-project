@@ -1,13 +1,6 @@
 {
   "favorite-books": [
     {
-      "title": "Norse mythology",
-      "isbn": "9780393609097",
-      "author": "Neil Gaiman",
-      "cover": "https://covers.openlibrary.org/b/id/12824590-S.jpg",
-      "id": 2
-    },
-    {
       "title": "Debt of honor",
       "isbn": "0425147584",
       "author": "Tom Clancy",
@@ -22,18 +15,25 @@
       "id": 5
     },
     {
-      "title": "Harry Potter and the Philosopher's Stone",
-      "isbn": "9780747589945",
-      "author": "J. K. Rowling",
-      "cover": "https://covers.openlibrary.org/b/id/11416484-S.jpg",
-      "id": 7
-    },
-    {
       "title": "The Book Thief",
       "isbn": "9780375842207",
       "author": "Markus Zusak",
       "cover": "https://covers.openlibrary.org/b/id/11478077-S.jpg",
       "id": 8
+    },
+    {
+      "title": "Little Fires Everywhere: A Novel",
+      "isbn": "9780735224315",
+      "author": "Celeste Ng",
+      "cover": "https://covers.openlibrary.org/b/id/8577805-S.jpg",
+      "id": 9
+    },
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "isbn": "9780747554561",
+      "author": "J. K. Rowling",
+      "cover": "no cover",
+      "id": 10
     }
   ],
   "top-200": [

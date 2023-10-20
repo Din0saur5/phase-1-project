@@ -118,11 +118,14 @@ document.addEventListener("DOMContentLoaded",()=>{
              } else{
                 authorsM = authors
              }
+             let favCov
+             if(coverImg){ favCov = coverImg.small}
+             else{favCov = "no cover"}
              let newFav ={
               "title": title,
               "isbn": isbn,
               "author": authorsM,
-              "cover": coverImg.small
+              "cover": favCov
             }
             
              fetch('http://localhost:3000/favorite-books',{
@@ -319,7 +322,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     favAuthor.setAttribute("class","favDet")
     favAuthor.textContent= `By: ${bookObj.author}`
     favImg.setAttribute("class","favDet")
-    favImg.src = bookObj.cover
+    if(bookObj.cover == "no\ncover"){
+       favImg.alt = bookObj.cover
+       
+    }else{favImg.src = bookObj.cover}
     favorites.appendChild(favWrap)
     favWrap.appendChild(favDiv)
     dltFav.textContent="x"

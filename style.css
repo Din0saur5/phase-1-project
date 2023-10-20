@@ -95,6 +95,7 @@ div.favWrap:hover .fav{
     transform: scale(1.7);
     margin-block-start: 30px;
     margin-inline-start: 7%;
+    font-size: 10pt;
 }
 
 .book-info{
@@ -112,11 +113,12 @@ p.favDet + p{
     width: -webkit-fill-available;
     padding-top: -4px;
 }
+
 button.fav{
-    position: inherit;
+    position: relative;
     background-color: indianred;
-    margin-block-start: -27%;
-    margin-inline-start: 85%;
+    margin-block-start: -29%;
+    margin-inline-start: 87%;
     font-family: serif;
     font-weight: bold;
     cursor: not-allowed;
