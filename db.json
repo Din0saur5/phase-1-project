@@ -22,18 +22,18 @@
       "id": 5
     },
     {
-      "title": "Tuesdays with Morrie",
-      "isbn": "9780385496490",
-      "author": "Mitch Albom",
-      "cover": "https://covers.openlibrary.org/b/id/12553893-S.jpg",
-      "id": 6
-    },
-    {
       "title": "Harry Potter and the Philosopher's Stone",
       "isbn": "9780747589945",
       "author": "J. K. Rowling",
       "cover": "https://covers.openlibrary.org/b/id/11416484-S.jpg",
       "id": 7
+    },
+    {
+      "title": "The Book Thief",
+      "isbn": "9780375842207",
+      "author": "Markus Zusak",
+      "cover": "https://covers.openlibrary.org/b/id/11478077-S.jpg",
+      "id": 8
     }
   ],
   "top-200": [
